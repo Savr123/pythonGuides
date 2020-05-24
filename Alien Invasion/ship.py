@@ -1,8 +1,19 @@
 import pygame
+import os
 
 class Ship:
-    def __init_(self):
+    def __init__(self, ai_game):
+        """Initialize the ship and set its starting position."""
         self.screen = ai_game.screen
         self.screen_rect = ai_game.screen.get_rect()
 
-        self.image = pygame.image.load("resources/Spaceship-PNG-File.bmp")
+        # Load the ship image and get its rect.
+        self.image = pygame.image.load(os.path.realpath('resources/ship.bmp'))
+        self.rect = self.image.get_rect()
+
+        # Start each new ship at the bottom center of the screen.
+        self.rect.midbottom = self.screen_rect.midbottom
+
+    def blitme(self):
+        self.screen.blit(self.image, self.rect)
+
